@@ -1,0 +1,263 @@
+* {
+    font-family: sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box; /* Para que el padding no afecte al tamaño del elemento */
+}
+
+body {
+    font-size: 23px; /* Tamaño de la fuente */
+}
+
+
+/* TITULOS */
+h1, h2, h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    text-align: center;
+}
+  
+/* TEXTO GENERAL */
+p, li, a {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    text-align: center;
+    color: #949494;
+    padding: 20px;
+}
+
+/* Menu */
+#listaMenu {
+    list-style: none;
+}
+
+#btnMenu {
+    display: none; /* oculto por defecto */
+}
+
+/* Logo */
+.cabecera-hero img[alt="logo de la empresa"] {
+    background: none;
+    width: 250px;
+    z-index: 10;
+    position: relative;
+    display: block;            /* Necesario para que el margin auto funcione */
+    margin: 0.5rem auto 0 auto; /* arriba: 1rem, laterales: auto, abajo: 0 */
+}
+
+.hero-text{
+    padding: 70px;
+}
+
+/* Imagenes cabecera */
+.ImagenesCabecera {
+    width: 100%;
+    overflow: hidden; 
+    position: relative;
+}
+
+.ImagenesCabecera img {
+    width: 100%;
+    height: auto;
+    display: none; /* Ocultas todas */
+    transition: opacity 0.5s ease-in-out;
+}
+
+.ImagenesCabecera img.active {
+    display: block; /* Mostrás solo la actual */
+}
+
+/* Estilo para imagenes main */
+main {
+    position: relative;
+    background-color: #fff;
+    z-index: 1;
+    padding: 20px;
+}
+
+section {
+    border: 1px solid #000000;
+    border-radius: 12px;
+    color: rgb(0, 0, 0);
+    box-shadow: 4px 9px 15px rgba(141, 141, 141, 0.2);
+    padding: 5%;
+    padding-top: 2%;
+    margin-top: 2%;
+}
+
+.galeriaSection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    overflow: hidden;
+}
+  
+.galeriaSection img {
+    width: 30em;
+    object-fit: cover;
+    border-radius: 20px;
+    filter: brightness(0.8) contrast(1) saturate(1);
+}
+
+/* contactos */
+.info-contacto {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    margin: 10px 0;
+    gap: 20px;
+    flex-wrap: nowrap;
+}
+  
+.info-contacto i {
+    font-size: 20px;
+    color: #333;
+}
+  
+.info-contacto p {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.flecha {
+    transition: transform 0.3s ease;
+}
+  
+.info-contacto:hover .flecha {
+    transform: translateX(5px);
+    color: #4c4c4c;
+}
+
+.contenedor-contacto {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0 auto;
+    gap: 30px;
+    max-width: 1000px; 
+    flex-wrap: wrap; /* Para que en móvil se acomoden uno debajo del otro */
+}
+
+.bloque-info {
+    flex: 1 1 300px;
+}
+  
+.mapa {
+    flex: 1 1 400px;
+    max-width: 500px;
+    min-width: 300px;
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.mapa iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
+/* Estilos para el escritorio */
+@media (min-width: 1281px) {
+    #menuPrincipal {
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        gap: 1rem; /* Espacio entre los elementos del menú */
+        position: absolute; 
+        top: 4rem; 
+        left: 0;
+        right: 0;
+    }
+    
+    #listaMenu {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap; /* No permite que se rompa la línea */
+        
+        gap: 1rem;
+        background-color: rgba(221, 221, 221, 0.35);
+        padding: 1rem 1rem; 
+        border-radius: 20px;
+        width: 100%;
+    }
+    
+    #listaMenu li a {
+        display: inline-block;
+        color: #000;
+        text-decoration: none;
+        font-size: 25px;
+        line-height: 50px;
+        transition: color 0.8s linear;
+        padding: 0 1rem;
+    }
+      
+    #listaMenu li a:hover {
+        color: #FFDB58;
+    }
+}
+
+  /* Estilos responsive para móviles y tablets */
+@media (max-width: 1281px) {
+    .galeriaSection {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .galeriaSection img {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    #menuPrincipal{
+        display: none; /* Oculta el menú por defecto en pantallas pequeñas */
+        flex-direction: column;
+        align-items: center;
+        background-color: rgba(177, 178, 168, 0.75);
+        position: absolute;
+        top: 66px;
+        right: 0;
+        left: 0;
+        padding: 0;
+        z-index: 50; 
+    }
+
+    #menuPrincipal.active {
+        display: flex;
+    }
+    
+    #btnMenu {
+        display: block; /* Muestra el botón de menú en pantallas pequeñas */
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        z-index: 50;
+        cursor: pointer;
+        color: #000000;
+    }
+
+    #menuPrincipal a {
+        display: inline-block; /* se tiene que poner esto para que funcione el movimiento del texto */
+        color: #000000;
+        text-decoration: none; /* quita el subrayado */
+        font-size: 27px;
+        line-height: 5px; /* altura de la línea */
+        transition: color 0.8s linear, transform 1s linear; /* tiempo de transición (al color amarillo), transicion lineal*/
+        padding-left: 5%;
+        padding: 0;
+    }
+
+    #menuPrincipal a:hover{
+        color: #FFDB58;
+        transform: translateX(5px); /* mueve 5 píxeles a la derecha */
+    }
+}
