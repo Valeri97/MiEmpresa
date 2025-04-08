@@ -16,6 +16,10 @@ h1, h2, h3 {
     font-weight: 500;
     text-align: center;
 }
+
+h2 {
+    font-size: 30px;
+}
   
 /* TEXTO GENERAL */
 p, li, a {
@@ -46,7 +50,7 @@ p, li, a {
 }
 
 .hero-text{
-    padding: 70px;
+    padding-top: 60px;
 }
 
 /* Imagenes cabecera */
@@ -137,6 +141,8 @@ section {
     align-items: flex-start;
     margin: 0 auto;
     gap: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
     max-width: 1000px; 
     flex-wrap: wrap; /* Para que en móvil se acomoden uno debajo del otro */
 }
@@ -159,6 +165,7 @@ section {
     height: 100%;
     border: 0;
     display: block;
+    filter: brightness(0.9) contrast(1) saturate(1);
 }
 
 /* Estilos para el escritorio */
