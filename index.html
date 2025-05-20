@@ -205,6 +205,7 @@ mostrarImagen(actual);
 
 // Configuración para el pase automático de imágenes (cada 4 segundos)
 setInterval(autoSlide, 4000); // Establece el intervalo de cambio de imágenes
+
 // Detecta el scroll para mostrar o esconder la flechita
 window.addEventListener('scroll', function() {
     const flecha = document.getElementById('flechaArriba');
@@ -220,7 +221,7 @@ document.getElementById('flechaArriba').addEventListener('click', function(e) {
     e.preventDefault();
     window.scrollTo({
         top: 0,
-        behavior: 'smooth' // Desplazamiento suave
+        behavior: 'smooth' //Desplazamiento suave
     });
 });
     </script>

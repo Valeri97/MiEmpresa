@@ -22,12 +22,21 @@ h2 {
 }
   
 /* TEXTO GENERAL */
-p, li, a {
+p {
     font-family: 'Lato', sans-serif;
     font-weight: 400;
     text-align: center;
     color: #949494;
     padding: 20px;
+    line-height: 1.6;
+}
+
+li, a{
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    text-align: center;
+    color: #949494;
+    padding: 10px;
     line-height: 1.6;
 }
 
@@ -96,7 +105,6 @@ p, li, a {
 .punto.active {
     background-color: #FFDB58;
 }
-
 
 /* Estilo para imagenes main */
 main {
@@ -200,39 +208,25 @@ section:nth-of-type(even) {
     filter: brightness(0.9) contrast(1) saturate(1);
 }
 
-#flechaArriba{
-    bottom: 0;
-    right: 0;
+#flechaArriba {
+    position: fixed;
+    bottom: 30px; /* Para que no esté pegado al borde */
+    right: 30px;
     background: linear-gradient(to bottom, rgb(253, 252, 233), #FFDB58);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 25px;
     border-radius: 50px;
-    margin: 30px;
     color: #ffffff;
     cursor: pointer;
-    position: fixed;
     z-index: 9999;
+    opacity: 0;             /* Oculto al inicio */
+    pointer-events: none;   /* No clickeable mientras está oculto */
+    transition: opacity 0.3s ease;
 }
 
-.flecha-arriba {
-    
-    bottom: 20px; /* Ajusta según tu preferencia */
-    right: 20px; /* Ajusta según tu preferencia */
-    background-color: #007bff;
-    color: #fff;
-    font-size: 24px;
-    padding: 10px 15px;
-    border-radius: 50%;
-    text-decoration: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: opacity 0.3s;
-    opacity: 0; /* Oculta por defecto */
-    pointer-events: none;
-}
-
-.flecha-arriba.visible {
-    opacity: 1;
-    pointer-events: auto;
+#flechaArriba.visible {
+    opacity: 1;             /* Visible cuando tiene la clase */
+    pointer-events: auto;   /* Clickeable */
 }
 
 /* Estilos para el escritorio */
@@ -285,9 +279,9 @@ section:nth-of-type(even) {
         top: 0;
         padding-top: 10px;
         width: 300px;
-        padding-left: 40px;
         left: 50%;
-        transform: translateX(-50%)
+        transform: translateX(-50%);
+        z-index: 100;
     }
     .galeriaSection {
       flex-direction: column;
@@ -304,41 +298,44 @@ section:nth-of-type(even) {
         display: none; /* Oculta el menú por defecto en pantallas pequeñas */
         flex-direction: column;
         align-items: center;
-        background-color: rgba(177, 178, 168, 0.75);
+        background-color: rgba(255, 255, 255, 0.692);
         position: absolute;
-        top: 66px;
+        top: 0;
         right: 0;
         left: 0;
         padding: 0;
-        z-index: 50; 
+        z-index: 50;
+        text-transform: uppercase;
+        padding-top: 80px;
     }
 
     #menuPrincipal.active {
         display: flex;
     }
     
-    #btnMenu {
+    #btnMenu { /* Hamburguesa */
         display: block; /* Muestra el botón de menú en pantallas pequeñas */
         position: absolute;
-        top: 1rem;
-        left: 1rem;
         background: none;
         border: none;
         font-size: 2rem;
-        z-index: 50;
+        z-index: 100;
         cursor: pointer;
         color: #000000;
+        top: 20px;
+        left: 20px;
     }
 
     #menuPrincipal a {
+        padding: 0;
         display: inline-block; /* se tiene que poner esto para que funcione el movimiento del texto */
         color: #000000;
         text-decoration: none; /* quita el subrayado */
-        font-size: 27px;
-        line-height: 5px; /* altura de la línea */
+        font-size: 20px;
         transition: color 0.8s linear, transform 1s linear; /* tiempo de transición (al color amarillo), transicion lineal*/
         padding-left: 5%;
-        padding: 0;
+        padding-bottom: 0; /* sin espacio entre enlaces */
+        line-height: 0;
     }
 
     #menuPrincipal a:hover{
