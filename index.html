@@ -19,39 +19,51 @@
 
 <body>
     <header class="cabecera-hero">
-        <!-- imagen logo -->
-        <img src="/img/logo.png" alt="logo de la empresa">
-
         <!-- botón hamburguesa -->
         <button id="btnMenu" aria-label="Abrir menú">
             <i class="fa-solid fa-bars"></i>
         </button>
         
-        <!--<i class="fa-duotone fa-solid fa-xmark"></i>  icono de cerrar (x) -->
-        
-        <!-- menu navegación -->
-        <nav aria-label="Menú principal" id="menuPrincipal">
-            <ul id="listaMenu">
-                <li><a href="#energia">Energía</a></li>
-                <li><a href="#inmobiliaria">Inmobiliaria</a></li>
-                <li><a href="#representacion">Representación</a></li>
-                <li><a href="#ecommerce">Ecommerce</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
         <!-- imagenes -->
         <div class="ImagenesCabecera">
+            <div class="puntos">
+                <span class="punto active"></span>
+                <span class="punto"></span>
+                <span class="punto"></span>
+                <span class="punto"></span>
+            </div>
             <img src="/img/cabecera_energia.jpg" alt="Sector energético">
             <img src="/img/cabecera_inmobiliaria.jpg" alt="Sector inmobiliario">
             <img src="/img/cabecera_artistas.jpg" alt="Sector representante">
             <img src="/img/cabecera_ecommerce.jpg" alt="Sector ecommerce">
+            
+        </div>
+        <!-- Indicadores (puntos) -->
+            
+        <!-- menu navegación -->
+        <div class="contenedor-header">
+            <!-- imagen logo -->
+            <div class="contenedor-imagen">
+                <img src="/img/logo.png" alt="logo de la empresa">
+            </div>
+            <div class="contenedor-menu">
+                <nav aria-label="Menú principal" id="menuPrincipal">
+                    <ul id="listaMenu">
+                        <li><a href="#energia">Energía</a></li>
+                        <li><a href="#inmobiliaria">Inmobiliaria</a></li>
+                        <li><a href="#representacion">Representación</a></li>
+                        <li><a href="#ecommerce">Ecommerce</a></li>
+                        <li><a href="#nosotros">Nosotros</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
         <div class="hero-text">
             <h2>MiEmpresa: soluciones que transforman</h2>
             <p>Energía, inmobiliaria, representación artística y ecommerce.</p>
         </div>
-        
+
     </header>
     <main>
         <!-- Secciones energia -->
@@ -89,6 +101,7 @@
                 <img src="/img/a_pintor.jpg" alt="pintor">
                 <img src="/img/a_baile.jpg" alt="baile">
             </div>
+            
         </section>
         
         <section id="ecommerce">
@@ -144,26 +157,72 @@
                 </div>
               </div>
         </section>
+        <!-- Flechita para subir arriba -->
+        <i class="fa-solid fa-arrow-up" id="flechaArriba"></i>
     </main>
 
     <script>
         /* Menu */
-        const btnMenu = document.getElementById("btnMenu");
-        const menu = document.getElementById("menuPrincipal");
+const btnMenu = document.getElementById("btnMenu");
+const menu = document.getElementById("menuPrincipal");
 
-        btnMenu.addEventListener("click", () => {
-          menu.classList.toggle("active");
-        });
+btnMenu.addEventListener("click", () => {
+  menu.classList.toggle("active");
+});
 
-        /* Imagen cabecera */
-        const imagenes = document.querySelectorAll('.ImagenesCabecera img');
-        let actual = 0;
-    
-        setInterval(() => {
-            imagenes[actual].classList.remove('active');
-            actual = (actual + 1) % imagenes.length;
-            imagenes[actual].classList.add('active');
-        }, 4000);
+/* Imagen cabecera */
+const imagenes = document.querySelectorAll('.ImagenesCabecera img');
+const puntos = document.querySelectorAll('.punto');  // Puntos para la navegación manual
+let actual = 0;
+
+// Función para mostrar la imagen activa y los puntos
+function mostrarImagen(index) {
+    // Ocultamos todas las imágenes y quitamos la clase 'active' de los puntos
+    imagenes.forEach(img => img.classList.remove('active'));
+    puntos.forEach(dot => dot.classList.remove('active'));
+
+    // Mostramos la imagen actual y marcamos el punto correspondiente
+    imagenes[index].classList.add('active');
+    puntos[index].classList.add('active');
+}
+
+// Función para mover las imágenes automáticamente
+function autoSlide() {
+    actual = (actual + 1) % imagenes.length; // Asegura que el índice sea cíclico
+    mostrarImagen(actual);
+}
+
+// Manejadores de clic en los puntitos
+puntos.forEach((punto, index) => {
+    punto.addEventListener('click', () => {
+        actual = index;
+        mostrarImagen(actual);
+    });
+});
+
+// Mostrar la primera imagen al cargar
+mostrarImagen(actual);
+
+// Configuración para el pase automático de imágenes (cada 4 segundos)
+setInterval(autoSlide, 4000); // Establece el intervalo de cambio de imágenes
+// Detecta el scroll para mostrar o esconder la flechita
+window.addEventListener('scroll', function() {
+    const flecha = document.getElementById('flechaArriba');
+    if (window.scrollY > 300) {
+        flecha.classList.add('visible');
+    } else {
+        flecha.classList.remove('visible');
+    }
+});
+
+// Subir al hacer clic
+document.getElementById('flechaArriba').addEventListener('click', function(e) {
+    e.preventDefault();
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // Desplazamiento suave
+    });
+});
     </script>
 </body>
 
